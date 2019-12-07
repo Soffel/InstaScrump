@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InstaSrump.Business\InstaSrump.Business.csproj" />
+    <ProjectReference Include="..\InstaSrump.Business\InstaScrump.Business.csproj" />
   </ItemGroup>
 
   <ItemGroup>

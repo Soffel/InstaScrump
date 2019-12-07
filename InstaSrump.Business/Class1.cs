@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace InstaSrump.Business
+﻿namespace InstaScrump.Business
 {
     public class Class1
     {

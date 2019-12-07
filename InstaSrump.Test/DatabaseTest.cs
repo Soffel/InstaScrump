@@ -3,7 +3,7 @@ using InstaScrump.Database.Model;
 using LinqToDB;
 using Xunit;
 
-namespace InstaSrump.Test
+namespace InstaScrump.Test
 {
     public class UnitTest1
     {

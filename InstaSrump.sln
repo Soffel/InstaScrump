@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaSrump", "InstaSrump\InstaSrump.csproj", "{6E01DA03-333E-4526-86F7-9B82D15CCC0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaScrump", "InstaSrump\InstaScrump.csproj", "{6E01DA03-333E-4526-86F7-9B82D15CCC0C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaSrump.InstagramApi", "InstaSrump.InstagramApi\InstaSrump.InstagramApi.csproj", "{2D4E65F2-417D-498D-997F-65FAC3139142}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaScrump.InstagramApi", "InstaSrump.InstagramApi\InstaScrump.InstagramApi.csproj", "{2D4E65F2-417D-498D-997F-65FAC3139142}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaScrump.Database", "InstaScrump.Database\InstaScrump.Database.csproj", "{BA0BB41C-5F2B-49A5-ABD6-7F8DB40279E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaSrump.Business", "InstaSrump.Business\InstaSrump.Business.csproj", "{B3F35787-E53D-4E79-8FDA-C76693365553}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaScrump.Business", "InstaSrump.Business\InstaScrump.Business.csproj", "{B3F35787-E53D-4E79-8FDA-C76693365553}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaSrump.Test", "InstaSrump.Test\InstaSrump.Test.csproj", "{BB9D7FE7-EA1B-4E1A-AC75-F9020B83EFAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaScrump.Test", "InstaSrump.Test\InstaScrump.Test.csproj", "{BB9D7FE7-EA1B-4E1A-AC75-F9020B83EFAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

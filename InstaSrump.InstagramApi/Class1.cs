@@ -1,13 +1,12 @@
-﻿using System;
-using InstagramApiSharp.Classes.Models;
+﻿using InstagramApiSharp.Classes.Models;
 
-namespace InstaSrump.InstagramApi
+namespace InstaScrump.InstagramApi
 {
     public class Class1
     {
         public void Toid()
         {
-            bool test = true;
+          
 
         }
     }

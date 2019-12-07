@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace InstaSrump
+namespace InstaScrump
 {
     class Program
     {
