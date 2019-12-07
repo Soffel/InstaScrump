@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace InstaScrump
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string input;
+            while ((input = Console.ReadLine())?.Equals("quit", StringComparison.InvariantCultureIgnoreCase) != null)
+            {
+                await CmdFactory.ExecuteCmd(input.Split(' '));
+            }
         }
     }
 }

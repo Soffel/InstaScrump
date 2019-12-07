@@ -15,7 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\InstaScrump.Database\InstaScrump.Database.csproj" />
     <ProjectReference Include="..\InstaSrump.Business\InstaScrump.Business.csproj" />
-    <ProjectReference Include="..\InstaSrump.InstagramApi\InstaScrump.InstagramApi.csproj" />
     <ProjectReference Include="..\InstaSrump\InstaScrump.csproj" />
   </ItemGroup>
 

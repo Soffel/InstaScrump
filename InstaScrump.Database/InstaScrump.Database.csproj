@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\InstraScrump.Common\InstaScrump.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Model\Db.tt">
       <LastGenOutput>Db.generated.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>

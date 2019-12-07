@@ -15,7 +15,7 @@ namespace InstaScrump.Database.Model
             {
                 DataConnection.TurnTraceSwitchOn();
                 DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
-                DataConnection.DefaultSettings = new DatabaseSettings("TEST", @"DataSource = G:\Projekte\Database\Tests\InstaScrump.db;");
+                DataConnection.DefaultSettings = new DatabaseTestSettings();
                 _db = new InstaScrumpDB("TEST");
             }
             else

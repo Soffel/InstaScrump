@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaScrump", "InstaSrump\InstaScrump.csproj", "{6E01DA03-333E-4526-86F7-9B82D15CCC0C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaScrump.InstagramApi", "InstaSrump.InstagramApi\InstaScrump.InstagramApi.csproj", "{2D4E65F2-417D-498D-997F-65FAC3139142}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaScrump.Database", "InstaScrump.Database\InstaScrump.Database.csproj", "{BA0BB41C-5F2B-49A5-ABD6-7F8DB40279E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaScrump.Business", "InstaSrump.Business\InstaScrump.Business.csproj", "{B3F35787-E53D-4E79-8FDA-C76693365553}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaScrump.Business", "InstaSrump.Business\InstaScrump.Business.csproj", "{B3F35787-E53D-4E79-8FDA-C76693365553}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaScrump.Test", "InstaSrump.Test\InstaScrump.Test.csproj", "{BB9D7FE7-EA1B-4E1A-AC75-F9020B83EFAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaScrump.Test", "InstaSrump.Test\InstaScrump.Test.csproj", "{BB9D7FE7-EA1B-4E1A-AC75-F9020B83EFAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaScrump.Common", "InstraScrump.Common\InstaScrump.Common.csproj", "{7EAD7376-0DE5-486E-9407-92F542B9FD8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{6E01DA03-333E-4526-86F7-9B82D15CCC0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E01DA03-333E-4526-86F7-9B82D15CCC0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E01DA03-333E-4526-86F7-9B82D15CCC0C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2D4E65F2-417D-498D-997F-65FAC3139142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D4E65F2-417D-498D-997F-65FAC3139142}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2D4E65F2-417D-498D-997F-65FAC3139142}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2D4E65F2-417D-498D-997F-65FAC3139142}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BA0BB41C-5F2B-49A5-ABD6-7F8DB40279E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BA0BB41C-5F2B-49A5-ABD6-7F8DB40279E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA0BB41C-5F2B-49A5-ABD6-7F8DB40279E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{BB9D7FE7-EA1B-4E1A-AC75-F9020B83EFAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB9D7FE7-EA1B-4E1A-AC75-F9020B83EFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB9D7FE7-EA1B-4E1A-AC75-F9020B83EFAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EAD7376-0DE5-486E-9407-92F542B9FD8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EAD7376-0DE5-486E-9407-92F542B9FD8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EAD7376-0DE5-486E-9407-92F542B9FD8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EAD7376-0DE5-486E-9407-92F542B9FD8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
