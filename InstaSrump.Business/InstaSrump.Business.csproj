@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InstaScrump.Database\InstaScrump.Database.csproj" />
+    <ProjectReference Include="..\InstaSrump.InstagramApi\InstaSrump.InstagramApi.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,24 @@
+﻿<#@ template language="C#" debug="True" hostSpecific="True"                        #>
+<#@ output extension=".generated.cs"                                               #>
+<#@ include file="$(LinqToDBT4SQLiteTemplatesDirectory)LinqToDB.SQLite.Tools.ttinclude" #>
+<#@ include file="$(LinqToDBT4SQLiteTemplatesDirectory)PluralizationService.ttinclude"  #>
+<# //@ include file="$(ProjectDir)LinqToDB.Templates\LinqToDB.SQLite.Tools.ttinclude" #>
+<# //@ include file="$(ProjectDir)LinqToDB.Templates\PluralizationService.ttinclude"  #>
+<#
+
+	NamespaceName                  = "InstaScrump.Database.Model";
+	GenerateDataTypes              = true;
+	NormalizeNames                 = true;
+
+	GenerateAssociations           = false;
+	GenerateBackReferences         = false;
+	GenerateAssociationExtensions  = true;
+
+	IsCompactColumns = false;
+
+	LoadSQLiteMetadata(@"G:\Projekte\Database\", "InstaScrump.db");
+	
+	Tables["UserMedia"].Columns["MediaTyp"].Type = "MediaTyp";
+
+	GenerateModel();
+#>
