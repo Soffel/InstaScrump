@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using LinqToDB;
 
 namespace InstaScrump.Database.Model
 {
@@ -17,6 +19,12 @@ namespace InstaScrump.Database.Model
         public static bool IsSmallerThan<T>(this T x, T high) where T : IComparable<T>
         {
             return x.CompareTo(high) <= 0;
+        }
+
+        public static LoginData Find(this ITable<LoginData> table, string userName)
+        {
+            return table.FirstOrDefault(t =>
+                t.UserName.Equals(userName, StringComparison.InvariantCultureIgnoreCase));
         }
     }
 }

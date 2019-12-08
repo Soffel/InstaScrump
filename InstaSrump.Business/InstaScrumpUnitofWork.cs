@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 using InstaScrump.Business.Repository;
+using InstaScrump.Common.Utils;
+using InstaScrump.Database.Model;
 
 namespace InstaScrump.Business
 {
     public class InstaScrumpUnitOfWork
     {
-        public InstaScrumpUnitOfWork()
+        public InstaScrumpUnitOfWork(DbContext dbContext, Config config)
         {
-            FollowRepository = new FollowRepository();
-            AuthenticationRepository = new AuthenticationRepository();
+            FollowRepository = new FollowRepository(dbContext, config);
+            AuthenticationRepository = new AuthenticationRepository(dbContext, config);
         }
 
         public static FollowRepository FollowRepository { get; private set; }

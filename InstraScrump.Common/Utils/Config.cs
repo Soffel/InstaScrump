@@ -75,6 +75,31 @@ namespace InstaScrump.Common.Utils
             {
                 Write("CsvSeparator", @";");
             }
+
+            if (!KeyExists("RequestLimitPerHour", "Config"))
+            {
+                Write("RequestLimit", @"2500", "Config");
+            }
+
+            if (!KeyExists("RequestLimitPerMinute", "Config"))
+            {
+                Write("RequestLimit", @"50", "Config");
+            }
+
+            if (!KeyExists("MaxLoginAttempt", "Config"))
+            {
+                Write("MaxLoginAttempt", @"5", "Config");
+            }
+
+            if (!KeyExists("Vector", "Security"))
+            {
+                Write("Vector", KeyGenerator.GetUniqueKey(20), "Security");
+            }
+
+            if (!KeyExists("Pswd", "Security"))
+            {
+                Write("Pswd", KeyGenerator.GetUniqueKey(35), "Security");
+            }
         }
     }
 }

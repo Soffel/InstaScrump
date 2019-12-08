@@ -8,7 +8,7 @@ namespace InstaScrump
         static async Task Main(string[] args)
         {
             string input;
-            while ((input = Console.ReadLine())?.Equals("quit", StringComparison.InvariantCultureIgnoreCase) != null)
+            while ((input = Console.ReadLine()) != null)
             {
                 await CmdFactory.ExecuteCmd(input.Split(' '));
             }

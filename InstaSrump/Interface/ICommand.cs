@@ -4,7 +4,7 @@ namespace InstaScrump.Interface
 {
     public interface ICommand
     {
-        string CommandString();
+        bool CommandString(string cmd);
         Task Execute(string[] args);
         string HelpText();
     }

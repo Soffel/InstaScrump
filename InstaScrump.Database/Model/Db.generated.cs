@@ -24,6 +24,7 @@ namespace InstaScrump.Database.Model
 	public partial class InstaScrumpDB : LinqToDB.Data.DataConnection
 	{
 		public ITable<Follow>     Follows   { get { return this.GetTable<Follow>(); } }
+		public ITable<LoginData>  LoginData { get { return this.GetTable<LoginData>(); } }
 		public ITable<UserMedium> UserMedia { get { return this.GetTable<UserMedium>(); } }
 
 		public InstaScrumpDB()
@@ -65,6 +66,22 @@ namespace InstaScrump.Database.Model
 		public DateTime? LastUpdate { get; set; } // datetime
 	}
 
+	[Table("LoginData")]
+	public partial class LoginData
+	{
+		[Column("_id", DataType=DataType.Int64, Length=8, Precision=19, Scale=0), PrimaryKey, Identity]
+		public long Id { get; set; } // integer
+
+		[Column(       DataType=DataType.Text,  Length=int.MaxValue, Precision=0, Scale=0), NotNull]
+		public string UserName { get; set; } // text(max)
+
+		[Column(       DataType=DataType.Text,  Length=int.MaxValue, Precision=0, Scale=0), NotNull]
+		public string UserPswd { get; set; } // text(max)
+
+		[Column(       DataType=DataType.Text,  Length=int.MaxValue, Precision=0, Scale=0), NotNull]
+		public string Salt { get; set; } // text(max)
+	}
+
 	[Table("UserMedia")]
 	public partial class UserMedium
 	{
@@ -84,6 +101,12 @@ namespace InstaScrump.Database.Model
 	public static partial class TableExtensions
 	{
 		public static Follow Find(this ITable<Follow> table, long Id)
+		{
+			return table.FirstOrDefault(t =>
+				t.Id == Id);
+		}
+
+		public static LoginData Find(this ITable<LoginData> table, long Id)
 		{
 			return table.FirstOrDefault(t =>
 				t.Id == Id);

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using InstaScrump.Command;
 using InstaScrump.Common.Extension;
@@ -19,6 +17,8 @@ namespace InstaScrump
             Commands = new List<ICommand>
             {
                new EchoCmd(),
+               new ClearCmd(),
+               new QuitCmd(),
             };
         }
 
@@ -26,11 +26,12 @@ namespace InstaScrump
         {
             if (!args[0].IsNullOrWhiteSpace())
             {
-                foreach (var command in Commands.Where(command => string.Equals(command.CommandString(), args[0], StringComparison.CurrentCultureIgnoreCase)))
+                foreach (var command in Commands.Where(command => command.CommandString(args[0])))
                 {
                     await command.Execute(args);
                     return;
                 }
+
                 $"Wrong Command [{args[0]}]".Write(ConsoleColor.Red);
             }
             else

@@ -5,25 +5,24 @@ using InstaScrump.Interface;
 
 namespace InstaScrump.Command
 {
-    internal class EchoCmd : CommandBase, ICommand
+    internal class QuitCmd : CommandBase, ICommand
     {
         public bool CommandString(string cmd)
         {
-            return cmd.Equals("echo", StringComparison.CurrentCultureIgnoreCase);
+            return cmd.Equals("quit", StringComparison.CurrentCultureIgnoreCase) ||
+                   cmd.Equals("exit", StringComparison.CurrentCultureIgnoreCase);
         }
 
 #pragma warning disable 1998
         public async Task Execute(string[] args)
 #pragma warning restore 1998
         {
-            args[0] = "";
-            var result = string.Join(' ', args);
-            result.Write(ConsoleColor.DarkGreen);
+            Environment.Exit(0);
         }
 
         public string HelpText()
         {
-            return $"echo <text> \t\t => outputs the following text.";
+            return $"quit | exit\t\t => stop InstaScrump :'(";
         }
     }
 }
