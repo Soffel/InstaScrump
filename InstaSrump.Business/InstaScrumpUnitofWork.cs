@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using InstaScrump.Business.Repository;
+﻿using InstaScrump.Business.Repository;
 using InstaScrump.Common.Utils;
 using InstaScrump.Database.Model;
 

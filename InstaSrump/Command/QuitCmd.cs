@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using InstaScrump.Common.Extension;
-using InstaScrump.Interface;
+using InstaScrump.Common.Interfaces;
 
 namespace InstaScrump.Command
 {
@@ -22,7 +21,7 @@ namespace InstaScrump.Command
 
         public string HelpText()
         {
-            return $"quit | exit\t\t => stop InstaScrump :'(";
+            return "quit | exit\t\t => stop InstaScrump :'(";
         }
     }
 }

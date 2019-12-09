@@ -92,7 +92,7 @@ namespace InstaScrump.Database.Model
 		public string MediaId { get; set; } // text(max)
 
 		[Column(       DataType=DataType.Int16, Length=2, Precision=5, Scale=0), NotNull]
-		public MediaTyp MediaTyp { get; set; } // smallint
+		public InstaScrump.Common.Enums.MediaTyp MediaTyp { get; set; } // smallint
 
 		[Column(       DataType=DataType.Int64, Length=8, Precision=19, Scale=0), NotNull]
 		public long InstaPk { get; set; } // integer

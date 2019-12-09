@@ -8,8 +8,8 @@ namespace InstaScrump.Command
     {
         public CommandBase()
         {
-            DbContext = new DbContext();
             Config = new Config(@"InstaScrump.ini");
+            DbContext = new DbContext(Config);
             InstaScrumpUnitOfWork = new InstaScrumpUnitOfWork(DbContext, Config);
         }
 

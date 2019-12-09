@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using InstaScrump.Common.Interfaces;
 using LinqToDB.Data;
 
 namespace InstaScrump.Database.Model
 {
-    public class DbContext : IDisposable
+    public class DbContext : IDbContext<InstaScrumpDB>, IDisposable
     {
         private InstaScrumpDB _db;
+        private IConfig _config;
+
+        public DbContext(IConfig config)
+        {
+            _config = config;
+        }
 
         public InstaScrumpDB Create(bool test = false)
         {
@@ -15,12 +22,12 @@ namespace InstaScrump.Database.Model
             {
                 DataConnection.TurnTraceSwitchOn();
                 DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
-                DataConnection.DefaultSettings = new DatabaseTestSettings();
+                DataConnection.DefaultSettings = new DatabaseSettings("TEST", _config.Read("Test","Database"));
                 _db = new InstaScrumpDB("TEST");
             }
             else
             {
-                DataConnection.DefaultSettings = new DatabaseSettings();
+                DataConnection.DefaultSettings = new DatabaseSettings("InstaScrump", _config.Read("Prod","Database"));
                 _db = new InstaScrumpDB("InstaScrump");
             }
 

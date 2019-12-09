@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using InstaScrump.Command;
 using InstaScrump.Common.Extension;
-using InstaScrump.Interface;
+using InstaScrump.Common.Interfaces;
 
 namespace InstaScrump
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using InstaScrump.Common.Extension;
-using InstaScrump.Interface;
+using InstaScrump.Common.Interfaces;
 
 namespace InstaScrump.Command
 {
@@ -21,7 +21,7 @@ namespace InstaScrump.Command
 
         public string HelpText()
         {
-            return $"clear\t\t => clears the console";
+            return "clear\t\t => clears the console";
         }
     }
 }

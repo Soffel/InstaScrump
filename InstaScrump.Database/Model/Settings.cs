@@ -17,14 +17,14 @@ namespace InstaScrump.Database.Model
         private readonly string _name;
         private readonly string _connectionString;
 
-        public DatabaseSettings()
+        public DatabaseSettings(string name, string connection)
         {
-            _name = DefaultConfiguration;
-            _connectionString = @"DataSource=G:\Projekte\Database\InstaScrump.db;";
+            _name = name;
+            _connectionString = connection;
         }
 
         public IEnumerable<IDataProviderSettings> DataProviders => Enumerable.Empty<IDataProviderSettings>();
-        public string DefaultConfiguration => "InstaScrump";
+        public string DefaultConfiguration => "DEFAULT";
         public string DefaultDataProvider => "SQLite";
         public IEnumerable<IConnectionStringSettings> ConnectionStrings
         {
@@ -41,32 +41,4 @@ namespace InstaScrump.Database.Model
         }
     }
 
-    public class DatabaseTestSettings : ILinqToDBSettings
-    {
-        private readonly string _name;
-        private readonly string _connectionString;
-       
-        public DatabaseTestSettings()
-        {
-            _name = DefaultConfiguration;
-            _connectionString = @"DataSource=G:\Projekte\Database\Tests\InstaScrump.db;";
-        }
-
-        public IEnumerable<IDataProviderSettings> DataProviders => Enumerable.Empty<IDataProviderSettings>();
-        public string DefaultConfiguration => "TEST";
-        public string DefaultDataProvider => "SQLite";
-        public IEnumerable<IConnectionStringSettings> ConnectionStrings
-        {
-            get
-            {
-                yield return
-                    new ConnectionStringSettings
-                    {
-                        Name = _name,
-                        ProviderName = DefaultDataProvider,
-                        ConnectionString = _connectionString,
-                    };
-            }
-        }
-    }
 }

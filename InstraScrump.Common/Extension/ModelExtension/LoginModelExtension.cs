@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace InstaScrump.Common.Extension.ModelExtension
+﻿namespace InstaScrump.Common.Extension.ModelExtension
 {
     public static class LoginModelExtension
     {

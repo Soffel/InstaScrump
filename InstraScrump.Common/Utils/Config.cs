@@ -2,10 +2,11 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using InstaScrump.Common.Interfaces;
 
 namespace InstaScrump.Common.Utils
 {
-    public class Config
+    public class Config : IConfig
     {
         private readonly string _path;
         private readonly string _exe = Assembly.GetExecutingAssembly().GetName().Name;
@@ -99,6 +100,16 @@ namespace InstaScrump.Common.Utils
             if (!KeyExists("Pswd", "Security"))
             {
                 Write("Pswd", KeyGenerator.GetUniqueKey(35), "Security");
+            }
+
+            if (!KeyExists("Prod", "Database"))
+            {
+                Write("Prod", @"DataSource=G:\Projekte\Database\InstaScrump.db;", "Database");
+            }
+
+            if (!KeyExists("Test", "Database"))
+            {
+                Write("Test", @"DataSource=G:\Projekte\Database\Test\InstaScrump.db;", "Database");
             }
         }
     }

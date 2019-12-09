@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Text;
 using System.IO;
 using System.Security.Cryptography;
+using System.Text;
 using InstaScrump.Common.Extension;
-using InstaScrump.Common.Utils;
 
-namespace InstaScrump.Business.Utils
+namespace InstaScrump.Common.Utils
 {
     public static class Cryptography
     {

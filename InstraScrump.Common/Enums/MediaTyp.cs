@@ -1,4 +1,4 @@
-﻿namespace InstaScrump.Database.Model
+﻿namespace InstaScrump.Common.Enums
 {
     public enum MediaTyp
     {

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using InstaScrump.Common.Utils;
+﻿using InstaScrump.Common.Interfaces;
 using InstaScrump.Database.Model;
 
 namespace InstaScrump.Business.Repository
 {
     public class FollowRepository : BaseRepository
     {
-        public FollowRepository(DbContext dbContext, Config config) : base(dbContext, config)
+        public FollowRepository(IDbContext<InstaScrumpDB> dbContext, IConfig config) : base(dbContext, config)
         {
 
         }

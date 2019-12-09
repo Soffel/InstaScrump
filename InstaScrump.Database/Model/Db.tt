@@ -18,7 +18,7 @@
 
 	LoadSQLiteMetadata(@"G:\Projekte\Database\", "InstaScrump.db");
 	
-	Tables["UserMedia"].Columns["MediaTyp"].Type = "MediaTyp";
+	Tables["UserMedia"].Columns["MediaTyp"].Type = "InstaScrump.Common.Enums.MediaTyp";
 
 	GenerateModel();
 #>

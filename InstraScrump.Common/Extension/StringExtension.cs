@@ -1,6 +1,4 @@
-﻿
-using System;
-using System.Numerics;
+﻿using System;
 using System.Text;
 
 namespace InstaScrump.Common.Extension

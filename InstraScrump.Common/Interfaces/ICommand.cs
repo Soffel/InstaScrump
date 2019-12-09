@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace InstaScrump.Interface
+namespace InstaScrump.Common.Interfaces
 {
     public interface ICommand
     {
