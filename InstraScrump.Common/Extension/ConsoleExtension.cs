@@ -9,8 +9,17 @@ namespace InstaScrump.Common.Extension
             var oldPos = Console.CursorTop;
 
             Console.SetCursorPosition(Console.CursorLeft, postion);
-            msg.Write(color);
+            msg.WriteLine(color);
             Console.SetCursorPosition(Console.CursorLeft, oldPos);
+        }
+
+        public static void WriteLine(this string msg, ConsoleColor color = ConsoleColor.White)
+        {
+            var oldColor = Console.ForegroundColor;
+
+            Console.ForegroundColor = color;
+            Console.WriteLine(">> "+msg.TrimStart(' ').PadRight(100, ' '));
+            Console.ForegroundColor = oldColor;
         }
 
         public static void Write(this string msg, ConsoleColor color = ConsoleColor.White)
@@ -18,7 +27,7 @@ namespace InstaScrump.Common.Extension
             var oldColor = Console.ForegroundColor;
 
             Console.ForegroundColor = color;
-            Console.WriteLine(">> "+msg.TrimStart(' ').PadRight(100, ' '));
+            Console.Write(">> " + msg.TrimStart(' ').PadRight(100, ' '));
             Console.ForegroundColor = oldColor;
         }
     }

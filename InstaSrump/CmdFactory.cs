@@ -32,19 +32,19 @@ namespace InstaScrump
                     return;
                 }
 
-                $"Wrong Command [{args[0]}]".Write(ConsoleColor.Red);
+                $"Wrong Command [{args[0]}]".WriteLine(ConsoleColor.Red);
             }
             else
             {
-                "the following commandos are available:".Write();
-                "----".Write(ConsoleColor.DarkYellow);
+                "the following commandos are available:".WriteLine();
+                "----".WriteLine(ConsoleColor.DarkYellow);
 
                 foreach (var command in Commands)
                 {
-                    command.HelpText().Write();
+                    command.HelpText().WriteLine();
                 }
 
-                "----".Write(ConsoleColor.DarkYellow);
+                "----".WriteLine(ConsoleColor.DarkYellow);
             }
         }
     }

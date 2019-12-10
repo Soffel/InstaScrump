@@ -13,7 +13,7 @@ namespace InstaScrump.Business.Repository
         }
 
         protected static IConfig Config { get; private set; }
-        protected static IInstaApi InstaApi { get; private set; }
+        protected static IInstaApi InstaApi { get; set; }
         protected IDbContext<InstaScrumpDB> DbContext { get; private set; }
     }
 }

@@ -18,7 +18,7 @@ namespace InstaScrump.Command
         {
             args[0] = "";
             var result = string.Join(' ', args);
-            result.Write(ConsoleColor.DarkGreen);
+            result.WriteLine(ConsoleColor.DarkGreen);
         }
 
         public string HelpText()

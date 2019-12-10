@@ -9,7 +9,7 @@ namespace InstaScrump.Database.Model
     public class DbContext : IDbContext<InstaScrumpDB>, IDisposable
     {
         private InstaScrumpDB _db;
-        private IConfig _config;
+        private readonly IConfig _config;
 
         public DbContext(IConfig config)
         {
