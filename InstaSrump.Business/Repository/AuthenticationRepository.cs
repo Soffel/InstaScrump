@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using InstagramApiSharp.API.Builder;
 using InstagramApiSharp.Classes;
+using InstaScrump.Business.Utils;
 using InstaScrump.Common;
 using InstaScrump.Common.Exceptions;
 using InstaScrump.Common.Extension;
@@ -19,8 +20,6 @@ namespace InstaScrump.Business.Repository
     {
         private readonly ushort _maxLoginAttempt;
         private LoginModel _activLogin;
-
-
         public AuthenticationRepository(IDbContext<InstaScrumpDB> dbContext, IConfig config) : base(dbContext, config)
         {
             _maxLoginAttempt = 5;
@@ -94,83 +93,7 @@ namespace InstaScrump.Business.Repository
 
                 var login = await InstaApi.LoginAsync();
 
-                if (!login.Succeeded)
-                {
-                    count++;
-
-                    switch (login.Value)
-                    {
-                        case InstaLoginResult.Success:
-                        {
-                            "login successful!".WriteLine(ConsoleColor.Green);
-                            _activLogin = loginData;
-                            return true;
-                        }
-                        case InstaLoginResult.BadPassword:
-                        {
-                            "bad password!".WriteLine(ConsoleColor.Red);
-                            return false;
-                        }
-                        case InstaLoginResult.InvalidUser:
-                        {
-                            "invalid user!".WriteLine(ConsoleColor.Red);
-                            return false;
-                        }
-                        case InstaLoginResult.TwoFactorRequired:
-                        {
-                            "twofactor todo".WriteLine(ConsoleColor.Cyan);
-                        }
-                            break;
-                        case InstaLoginResult.Exception:
-                        {
-                            "error!".WriteLine(ConsoleColor.Red);
-                        }
-                            break;
-                        case InstaLoginResult.ChallengeRequired:
-                        {
-                            var challenge = await InstaApi.GetChallengeRequireVerifyMethodAsync();
-
-                            if (!challenge.Succeeded)
-                            {
-                                challenge.Info.Message.WriteLine(ConsoleColor.Red);
-                            }
-                            else
-                            {
-                                Sleeper.Sleep();
-                                var sendMail = await InstaApi.RequestVerifyCodeToEmailForChallengeRequireAsync();
-                                if (sendMail.Succeeded)
-                                {
-                                    $"Instagram send a verify code to this email: \n{sendMail.Value.StepData.ContactPoint}"
-                                        .WriteLine(ConsoleColor.Yellow);
-                                    "Code: ".Write();
-
-                                    var code = Console.ReadLine();
-
-                                    $"send code {code} to Instagram".WriteLine(ConsoleColor.Yellow);
-
-                                    var verify = await InstaApi.VerifyCodeForChallengeRequireAsync(code);
-                                    if (verify.Succeeded)
-                                    {
-                                        if (InstaApi.IsUserAuthenticated)
-                                        {
-                                            "login successful!".WriteLine(ConsoleColor.Green);
-                                            _activLogin = loginData;
-                                            return true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                            break;
-                        case InstaLoginResult.LimitError:
-                            "idiot!".Write(ConsoleColor.Red);
-                            break;
-                        case InstaLoginResult.InactiveUser:
-                            "inactiv user!".WriteLine(ConsoleColor.Red);
-                            break;
-                    }
-                }
-                else
+                if(await ValidateLoginValue(login, loginData))
                 {
                     "login successful!".WriteLine(ConsoleColor.Green);
                     _activLogin = loginData;
@@ -184,6 +107,100 @@ namespace InstaScrump.Business.Repository
             return false;
         }
 
+        private async Task<bool> ValidateLoginValue(IResult<InstaLoginResult> loginResult, LoginModel loginData)
+        {
+            if (loginResult.Succeeded)
+                return true;
+
+            switch (loginResult.Value)
+            {
+                case InstaLoginResult.Success:
+                {
+                    return true;
+                }
+                case InstaLoginResult.BadPassword:
+                {
+                    "bad password!".WriteLine(ConsoleColor.Red);
+                    return false;
+                }
+                case InstaLoginResult.InvalidUser:
+                {
+                    "invalid user!".WriteLine(ConsoleColor.Red);
+                    return false;
+                }
+                case InstaLoginResult.TwoFactorRequired:
+                {
+                    "TwoFactorAuthentifikation:".WriteLine(ConsoleColor.Yellow);
+
+                    var code = TimedOneTimePswdGenerator.GetOneTimePswd(loginData.Key);
+
+                    $"Generate OneTimedPswd: {code} ".WriteLine(ConsoleColor.Yellow);
+                    var twoFactorLogin = await InstaApi.TwoFactorLoginAsync(code);
+
+                    if (!twoFactorLogin.Succeeded)
+                    {
+                        twoFactorLogin.Info.Message.WriteLine(ConsoleColor.Red);
+                        return false;
+                    }
+                    return true;
+                }
+                case InstaLoginResult.Exception:
+                {
+                    "error!".WriteLine(ConsoleColor.Red);
+                    loginResult.Info.Message.WriteLine(ConsoleColor.Red);
+                    return false;
+                }
+                case InstaLoginResult.ChallengeRequired:
+                {
+                    var challenge = await InstaApi.GetChallengeRequireVerifyMethodAsync();
+
+                    if (!challenge.Succeeded)
+                    {
+                        challenge.Info.Message.WriteLine(ConsoleColor.Red);
+                        return false;
+                    }
+                 
+                    Sleeper.Sleep();
+
+                    var sendMail = await InstaApi.RequestVerifyCodeToEmailForChallengeRequireAsync();
+                    if (sendMail.Succeeded)
+                    {
+                        try
+                        {
+                            $"Instagram send a verify code to this email: \n{sendMail.Value.StepData.ContactPoint}"
+                                .WriteLine(ConsoleColor.Yellow);
+                            "Code: ".Write();
+
+                            var code = Console.ReadLine();
+
+                            $"send code {code} to Instagram".WriteLine(ConsoleColor.Yellow);
+
+                            var verify = await InstaApi.VerifyCodeForChallengeRequireAsync(code);
+
+                            return await ValidateLoginValue(verify, loginData);
+                        }
+                        catch (Exception e)
+                        {
+                           e.Message.WriteLine(ConsoleColor.Red);
+                           return false;
+                        }
+                    }
+
+                    return false;
+                }
+                case InstaLoginResult.LimitError:
+                {
+                    "Login Request Limit!".Write(ConsoleColor.Red);
+                    return false;
+                }
+                case InstaLoginResult.InactiveUser:
+                {
+                    "inactiv user!".WriteLine(ConsoleColor.Red);
+                    return false;
+                }
+            }
+            return false;
+        }
         public async Task<bool> Logout()
         {
             try

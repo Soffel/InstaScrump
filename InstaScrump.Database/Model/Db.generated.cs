@@ -79,6 +79,9 @@ namespace InstaScrump.Database.Model
 		public string UserPswd { get; set; } // text(max)
 
 		[Column(       DataType=DataType.Text,  Length=int.MaxValue, Precision=0, Scale=0), NotNull]
+		public string TotpKey { get; set; } // text(max)
+
+		[Column(       DataType=DataType.Text,  Length=int.MaxValue, Precision=0, Scale=0), NotNull]
 		public string Salt { get; set; } // text(max)
 	}
 

@@ -8,5 +8,6 @@ namespace InstaScrump.Common
     {
         public string UserName { get; set; }
         public string Pswd { get; set; }
+        public string Key { get; set; }
     }
 }
