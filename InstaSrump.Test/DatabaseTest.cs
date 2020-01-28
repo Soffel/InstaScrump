@@ -16,7 +16,10 @@ namespace InstaScrump.Test
                 Assert.NotNull(db);
                 Assert.IsType<InstaScrumpDB>(db);
 
+           
                 await db.Follows.DeleteAsync();
+
+
 
                 Assert.True(await db.Follows.InsertAsync(() => new Follow
                     {Favorit = true, FullName = "Maxi Mustermensch", InstaPk = 1, Username = "MaMu"}) == 1);

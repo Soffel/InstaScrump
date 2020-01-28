@@ -19,7 +19,7 @@ namespace InstaScrump.Database.Model
 	/// <summary>
 	/// Database       : InstaScrump
 	/// Data Source    : InstaScrump
-	/// Server Version : 3.19.3
+	/// Server Version : 3.24.0
 	/// </summary>
 	public partial class InstaScrumpDB : LinqToDB.Data.DataConnection
 	{
@@ -77,9 +77,6 @@ namespace InstaScrump.Database.Model
 
 		[Column(       DataType=DataType.Text,  Length=int.MaxValue, Precision=0, Scale=0), NotNull]
 		public string UserPswd { get; set; } // text(max)
-
-		[Column(       DataType=DataType.Text,  Length=int.MaxValue, Precision=0, Scale=0), NotNull]
-		public string TotpKey { get; set; } // text(max)
 
 		[Column(       DataType=DataType.Text,  Length=int.MaxValue, Precision=0, Scale=0), NotNull]
 		public string Salt { get; set; } // text(max)

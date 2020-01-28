@@ -13,7 +13,7 @@ namespace InstaScrump.Command
             InstaScrumpUnitOfWork = new InstaScrumpUnitOfWork(DbContext, Config);
         }
 
-        protected static InstaScrumpUnitOfWork InstaScrumpUnitOfWork { get; private set; }
+        public static InstaScrumpUnitOfWork InstaScrumpUnitOfWork { get; private set; }
         protected static Config Config { get; private set; }
         protected DbContext DbContext { get; private set; }
     }

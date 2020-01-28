@@ -1,10 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using InstagramApiSharp.API.Builder;
 using InstagramApiSharp.Classes;
-using InstaScrump.Business.Utils;
 using InstaScrump.Common;
 using InstaScrump.Common.Exceptions;
 using InstaScrump.Common.Extension;
@@ -12,6 +12,7 @@ using InstaScrump.Common.Extension.ModelExtension;
 using InstaScrump.Common.Interfaces;
 using InstaScrump.Common.Utils;
 using InstaScrump.Database.Model;
+using System.Linq;
 using LinqToDB;
 
 namespace InstaScrump.Business.Repository
@@ -57,7 +58,7 @@ namespace InstaScrump.Business.Repository
                         using (var db = DbContext.Create())
                         {
                             if (await db.InsertAsync(new LoginData()
-                            {
+                            {              
                                 Salt = salt,
                                 UserPswd = pswd,
                                 UserName = loginData.UserName
@@ -69,6 +70,34 @@ namespace InstaScrump.Business.Repository
                     }
                 }
             }
+        }
+
+        public async Task<bool> Login(string username)
+        {
+            if(username.IsNullOrWhiteSpace())
+            {
+                "missing login name!".WriteLine(ConsoleColor.Red);
+                return false;
+            }
+            var pswd = string.Empty;
+            LoginData user;
+            using (var db = DbContext.Create())
+            {
+                user = await db.LoginData.Where(s => s.UserName.Equals(username)).FirstOrDefaultAsync();
+
+                if (user == default)
+                {
+                    $"user {username} not stored in database".WriteLine(ConsoleColor.Red);
+                    return false;
+                }
+                    
+                pswd = Cryptography.Decrypt<AesManaged>(user.UserPswd, Config.Read("Pswd", "Security"), user.Salt, Config.Read("Vector", "Security"));  
+            }
+
+            if (!pswd.IsNullOrWhiteSpace())
+                return await Login(new LoginModel { UserName = user.UserName, Pswd = pswd });
+
+            return false;
         }
 
         private async Task<bool> Login(LoginModel loginData)
@@ -89,14 +118,16 @@ namespace InstaScrump.Business.Repository
                     .SetUser(new UserSessionData {UserName = loginData.UserName, Password = loginData.Pswd})
                     .Build();
 
-                "Wait for login...".WriteLine();
+               "Wait for login...".WriteLine();
 
                 var login = await InstaApi.LoginAsync();
 
                 if(await ValidateLoginValue(login, loginData))
                 {
                     "login successful!".WriteLine(ConsoleColor.Green);
+
                     _activLogin = loginData;
+
                     return true;
                 }
 
@@ -132,9 +163,9 @@ namespace InstaScrump.Business.Repository
                 {
                     "TwoFactorAuthentifikation:".WriteLine(ConsoleColor.Yellow);
 
-                    var code = TimedOneTimePswdGenerator.GetOneTimePswd(loginData.Key);
+                   var code = Console.ReadLine();
 
-                    $"Generate OneTimedPswd: {code} ".WriteLine(ConsoleColor.Yellow);
+                    $"use TwoFactorAuthentifikation: {code} ".WriteLine(ConsoleColor.Yellow);
                     var twoFactorLogin = await InstaApi.TwoFactorLoginAsync(code);
 
                     if (!twoFactorLogin.Succeeded)
@@ -201,6 +232,7 @@ namespace InstaScrump.Business.Repository
             }
             return false;
         }
+
         public async Task<bool> Logout()
         {
             try

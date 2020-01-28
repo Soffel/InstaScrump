@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace InstaScrump.Common.Utils
+﻿namespace InstaScrump.Common.Utils
 {
     public static class Sleeper
     {

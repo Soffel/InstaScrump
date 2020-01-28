@@ -67,6 +67,11 @@ namespace InstaScrump.Common.Utils
                 Write("Csv", @"Path\For\CSV\Import", "Path");
             }
 
+            if (!KeyExists("SaveLoginFile", "Path"))
+            {
+                Write("SaveLoginPath",  @"Path\For\Save\File", "Data");
+            }
+
             if (!KeyExists("Separator"))
             {
                 Write("Separator", @"<;>");
@@ -94,7 +99,7 @@ namespace InstaScrump.Common.Utils
 
             if (!KeyExists("Vector", "Security"))
             {
-                Write("Vector", KeyGenerator.GetUniqueKey(20), "Security");
+                Write("Vector", KeyGenerator.GetUniqueKey(16), "Security");
             }
 
             if (!KeyExists("Pswd", "Security"))
@@ -111,6 +116,7 @@ namespace InstaScrump.Common.Utils
             {
                 Write("Test", @"DataSource=G:\Projekte\Database\Test\InstaScrump.db;", "Database");
             }
+
         }
     }
 }

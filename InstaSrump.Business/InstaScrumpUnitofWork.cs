@@ -12,7 +12,7 @@ namespace InstaScrump.Business
             AuthenticationRepository = new AuthenticationRepository(dbContext, config);
         }
 
-        public static FollowRepository FollowRepository { get; private set; }
-        public static AuthenticationRepository AuthenticationRepository { get; private set; }
+        public  FollowRepository FollowRepository { get; private set; }
+        public  AuthenticationRepository AuthenticationRepository { get; private set; }
     }
 }
