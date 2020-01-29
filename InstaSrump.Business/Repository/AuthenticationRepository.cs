@@ -12,7 +12,8 @@ using InstaScrump.Common.Extension.ModelExtension;
 using InstaScrump.Common.Interfaces;
 using InstaScrump.Common.Utils;
 using InstaScrump.Database.Model;
-using System.Linq;
+using InstaScrump.Common.Constants;
+
 using LinqToDB;
 
 namespace InstaScrump.Business.Repository
@@ -26,7 +27,7 @@ namespace InstaScrump.Business.Repository
             _maxLoginAttempt = 5;
             _activLogin = null;
 
-            if (ushort.TryParse(Config.Read("MaxLoginAttempt", "Config"), out var maxLoginAttempt))
+            if (ushort.TryParse(Config.Read(ConfigKey.Max_Login_Key, "Config"), out var maxLoginAttempt))
                 _maxLoginAttempt = maxLoginAttempt;
         }
 
@@ -83,7 +84,7 @@ namespace InstaScrump.Business.Repository
             LoginData user;
             using (var db = DbContext.Create())
             {
-                user = await db.LoginData.Where(s => s.UserName.Equals(username)).FirstOrDefaultAsync();
+                user = await db.LoginData.FindAsync(username);
 
                 if (user == default)
                 {
@@ -91,7 +92,7 @@ namespace InstaScrump.Business.Repository
                     return false;
                 }
                     
-                pswd = Cryptography.Decrypt<AesManaged>(user.UserPswd, Config.Read("Pswd", "Security"), user.Salt, Config.Read("Vector", "Security"));  
+                pswd = Cryptography.Decrypt<AesManaged>(user.UserPswd, Config.Read(ConfigKey.Pswd_Key, "Security"), user.Salt, Config.Read("Vector", "Security"));  
             }
 
             if (!pswd.IsNullOrWhiteSpace())
@@ -184,7 +185,6 @@ namespace InstaScrump.Business.Repository
                 case InstaLoginResult.ChallengeRequired:
                 {
                     var challenge = await InstaApi.GetChallengeRequireVerifyMethodAsync();
-
                     if (!challenge.Succeeded)
                     {
                         challenge.Info.Message.WriteLine(ConsoleColor.Red);

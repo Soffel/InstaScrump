@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using InstaScrump.Common.Interfaces;
+using InstaScrump.Common.Constants;
 using LinqToDB.Data;
 
 namespace InstaScrump.Database.Model
@@ -22,12 +23,12 @@ namespace InstaScrump.Database.Model
             {
                 DataConnection.TurnTraceSwitchOn();
                 DataConnection.WriteTraceLine = (msg, context) => Debug.WriteLine(msg, context);
-                DataConnection.DefaultSettings = new DatabaseSettings("TEST", _config.Read("Test","Database"));
+                DataConnection.DefaultSettings = new DatabaseSettings("TEST", _config.Read(ConfigKey.Test_Db_Key,"Database"));
                 _db = new InstaScrumpDB("TEST");
             }
             else
             {
-                DataConnection.DefaultSettings = new DatabaseSettings("InstaScrump", _config.Read("Prod","Database"));
+                DataConnection.DefaultSettings = new DatabaseSettings("InstaScrump", _config.Read(ConfigKey.Prod_Db_Key,"Database"));
                 _db = new InstaScrumpDB("InstaScrump");
             }
 

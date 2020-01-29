@@ -20,6 +20,7 @@ namespace InstaScrump
                new ClearCmd(),
                new QuitCmd(),
                new LoginCmd(),
+               new LogoutCmd(),
             };
         }
 

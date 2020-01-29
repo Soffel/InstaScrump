@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using LinqToDB;
 
 namespace InstaScrump.Database.Model
@@ -24,7 +25,12 @@ namespace InstaScrump.Database.Model
         public static LoginData Find(this ITable<LoginData> table, string userName)
         {
             return table.FirstOrDefault(t =>
-                t.UserName.Equals(userName, StringComparison.InvariantCultureIgnoreCase));
+                t.UserName.Equals(userName));
+        }
+        public static async Task<LoginData> FindAsync(this ITable<LoginData> table, string userName)
+        {
+            return await table.FirstOrDefaultAsync(t =>
+                t.UserName.Equals(userName));
         }
     }
 }

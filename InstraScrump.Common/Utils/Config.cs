@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using InstaScrump.Common.Interfaces;
+using InstaScrump.Common.Constants;
 
 namespace InstaScrump.Common.Utils
 {
@@ -52,69 +53,69 @@ namespace InstaScrump.Common.Utils
 
         public void WriteDefaultIniFile()
         {
-            if (!KeyExists("Download", "Path"))
+            if (!KeyExists(ConfigKey.Download_Key, "Path"))
             {
-                Write("Download", @"Path\To\Saved\Pictures", "Path");
+                Write(ConfigKey.Download_Key, @"Path\To\Saved\Pictures", "Path");
             }
 
-            if (!KeyExists("Log", "Path"))
+            if (!KeyExists(ConfigKey.Log_Key, "Path"))
             {
-                Write("Log", @"Path\To\LogFiles", "Path");
+                Write(ConfigKey.Log_Key, @"Path\To\LogFiles", "Path");
             }
 
-            if (!KeyExists("Csv", "Path"))
+            if (!KeyExists(ConfigKey.Csv_Key, "Path"))
             {
-                Write("Csv", @"Path\For\CSV\Import", "Path");
+                Write(ConfigKey.Csv_Key, @"Path\For\CSV\Import", "Path");
             }
 
-            if (!KeyExists("SaveLoginFile", "Path"))
+            if (!KeyExists(ConfigKey.Login_File_Key, "Path"))
             {
-                Write("SaveLoginPath",  @"Path\For\Save\File", "Data");
+                Write(ConfigKey.Login_File_Key,  @"Path\For\Save\File", "Data");
             }
 
-            if (!KeyExists("Separator"))
+            if (!KeyExists(ConfigKey.Separator_Key))
             {
-                Write("Separator", @"<;>");
+                Write(ConfigKey.Separator_Key, @"<;>");
             }
 
-            if (!KeyExists("CsvSeparator"))
+            if (!KeyExists(ConfigKey.Csv_Separator_Key))
             {
-                Write("CsvSeparator", @";");
+                Write(ConfigKey.Csv_Separator_Key, @";");
             }
 
-            if (!KeyExists("RequestLimitPerHour", "Config"))
+            if (!KeyExists(ConfigKey.Request_Limit_Per_Hour_Key, "Config"))
             {
-                Write("RequestLimit", @"2500", "Config");
+                Write(ConfigKey.Request_Limit_Per_Hour_Key, @"2500", "Config");
             }
 
-            if (!KeyExists("RequestLimitPerMinute", "Config"))
+            if (!KeyExists(ConfigKey.Request_Limit_Per_Minute_Key, "Config"))
             {
-                Write("RequestLimit", @"50", "Config");
+                Write(ConfigKey.Request_Limit_Per_Minute_Key, @"50", "Config");
             }
 
-            if (!KeyExists("MaxLoginAttempt", "Config"))
+            if (!KeyExists(ConfigKey.Max_Login_Key, "Config"))
             {
-                Write("MaxLoginAttempt", @"5", "Config");
+                Write(ConfigKey.Max_Login_Key, @"5", "Config");
             }
 
-            if (!KeyExists("Vector", "Security"))
+            if (!KeyExists(ConfigKey.Vector_Key, "Security"))
             {
-                Write("Vector", KeyGenerator.GetUniqueKey(16), "Security");
+                Write(ConfigKey.Vector_Key, KeyGenerator.GetUniqueKey(16), "Security");
             }
 
-            if (!KeyExists("Pswd", "Security"))
+            if (!KeyExists(ConfigKey.Pswd_Key, "Security"))
             {
-                Write("Pswd", KeyGenerator.GetUniqueKey(35), "Security");
+                Write(ConfigKey.Pswd_Key, KeyGenerator.GetUniqueKey(35), "Security");
             }
 
-            if (!KeyExists("Prod", "Database"))
+            if (!KeyExists(ConfigKey.Prod_Db_Key, "Database"))
             {
-                Write("Prod", @"DataSource=G:\Projekte\Database\InstaScrump.db;", "Database");
+                Write(ConfigKey.Prod_Db_Key, @"DataSource=G:\Projekte\Database\InstaScrump.db;", "Database");
             }
 
-            if (!KeyExists("Test", "Database"))
+            if (!KeyExists(ConfigKey.Test_Db_Key, "Database"))
             {
-                Write("Test", @"DataSource=G:\Projekte\Database\Test\InstaScrump.db;", "Database");
+                Write(ConfigKey.Test_Db_Key, @"DataSource=G:\Projekte\Database\Test\InstaScrump.db;", "Database");
             }
 
         }

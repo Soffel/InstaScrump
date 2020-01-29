@@ -5,16 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Utils\**" />
+    <EmbeddedResource Remove="Utils\**" />
+    <None Remove="Utils\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNetCore.Totp" Version="2.3.0" />
     <PackageReference Include="InstagramApiSharp" Version="1.4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\InstaScrump.Database\InstaScrump.Database.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Utils\" />
   </ItemGroup>
 
 </Project>
