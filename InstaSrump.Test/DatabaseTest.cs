@@ -22,7 +22,7 @@ namespace InstaScrump.Test
 
 
                 Assert.True(await db.Follows.InsertAsync(() => new Follow
-                    {Favorit = true, FullName = "Maxi Mustermensch", InstaPk = 1, Username = "MaMu"}) == 1);
+                    {Favorit = true, FullName = "Maxi Mustermensch", InstaPk = 1, UserName = "MaMu"}) == 1);
             }
         }
     }

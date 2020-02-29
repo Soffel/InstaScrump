@@ -1,4 +1,6 @@
-﻿namespace InstaScrump.Common.Extension.ModelExtension
+﻿using Extension;
+
+namespace InstaScrump.Common.Extension
 {
     public static class LoginModelExtension
     {

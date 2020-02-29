@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
@@ -8,11 +7,11 @@ using InstagramApiSharp.Classes;
 using InstaScrump.Common;
 using InstaScrump.Common.Exceptions;
 using InstaScrump.Common.Extension;
-using InstaScrump.Common.Extension.ModelExtension;
 using InstaScrump.Common.Interfaces;
 using InstaScrump.Common.Utils;
 using InstaScrump.Database.Model;
 using InstaScrump.Common.Constants;
+using Extension;
 
 using LinqToDB;
 
@@ -49,26 +48,30 @@ namespace InstaScrump.Business.Repository
                     InstaApi != null &&
                     InstaApi.IsUserAuthenticated)
                 {
+                    CheckRequestLimit();
                     var userInfo = await InstaApi.GetCurrentUserAsync();
 
                     if (userInfo.Succeeded)
                     {
-                        var (pswd, salt) = Cryptography.Encrypt<AesManaged>(loginData.Pswd,
-                            Config.Read("Pswd", "Security"), Config.Read("Vector", "Security"));
+                        //var (pswd, salt) = Cryptography.Encrypt<AesManaged>(loginData.Pswd,
+                        //    Config.Read("Pswd", "Security"), Config.Read("Vector", "Security"));
 
                         using (var db = DbContext.Create())
                         {
                             if (await db.InsertAsync(new LoginData()
                             {              
-                                Salt = salt,
-                                UserPswd = pswd,
+                                Salt = "abc",//salt,
+                                UserPswd = loginData.Pswd,//pswd,
                                 UserName = loginData.UserName
                             }) != 1)
                                 throw new DatabaseException("LoginData insert failed!");
 
                             await db.CommitTransactionAsync();
+                            return;
                         }
                     }
+                   
+                    userInfo.Info.Message.WriteLine(ConsoleColor.Yellow);   
                 }
             }
         }
@@ -91,8 +94,8 @@ namespace InstaScrump.Business.Repository
                     $"user {username} not stored in database".WriteLine(ConsoleColor.Red);
                     return false;
                 }
-                    
-                pswd = Cryptography.Decrypt<AesManaged>(user.UserPswd, Config.Read(ConfigKey.Pswd_Key, "Security"), user.Salt, Config.Read("Vector", "Security"));  
+
+                pswd = user.UserPswd;// Cryptography.Decrypt<AesManaged>(user.UserPswd, Config.Read(ConfigKey.Pswd_Key, "Security"), user.Salt, Config.Read("Vector", "Security"));  
             }
 
             if (!pswd.IsNullOrWhiteSpace())
@@ -114,6 +117,7 @@ namespace InstaScrump.Business.Repository
             var count = 0;
             while (count < _maxLoginAttempt)
             {
+                CheckRequestLimit();
                 InstaApi = InstaApiBuilder.CreateBuilder()
                     .UseHttpClientHandler(new HttpClientHandler())
                     .SetUser(new UserSessionData {UserName = loginData.UserName, Password = loginData.Pswd})
@@ -121,6 +125,7 @@ namespace InstaScrump.Business.Repository
 
                "Wait for login...".WriteLine();
 
+                CheckRequestLimit();
                 var login = await InstaApi.LoginAsync();
 
                 if(await ValidateLoginValue(login, loginData))
@@ -167,6 +172,8 @@ namespace InstaScrump.Business.Repository
                    var code = Console.ReadLine();
 
                     $"use TwoFactorAuthentifikation: {code} ".WriteLine(ConsoleColor.Yellow);
+
+                    CheckRequestLimit();
                     var twoFactorLogin = await InstaApi.TwoFactorLoginAsync(code);
 
                     if (!twoFactorLogin.Succeeded)
@@ -184,6 +191,7 @@ namespace InstaScrump.Business.Repository
                 }
                 case InstaLoginResult.ChallengeRequired:
                 {
+                    CheckRequestLimit();
                     var challenge = await InstaApi.GetChallengeRequireVerifyMethodAsync();
                     if (!challenge.Succeeded)
                     {
@@ -193,6 +201,7 @@ namespace InstaScrump.Business.Repository
                  
                     Sleeper.Sleep();
 
+                    CheckRequestLimit();
                     var sendMail = await InstaApi.RequestVerifyCodeToEmailForChallengeRequireAsync();
                     if (sendMail.Succeeded)
                     {
@@ -206,6 +215,7 @@ namespace InstaScrump.Business.Repository
 
                             $"send code {code} to Instagram".WriteLine(ConsoleColor.Yellow);
 
+                            CheckRequestLimit();
                             var verify = await InstaApi.VerifyCodeForChallengeRequireAsync(code);
 
                             return await ValidateLoginValue(verify, loginData);
@@ -216,6 +226,8 @@ namespace InstaScrump.Business.Repository
                            return false;
                         }
                     }
+
+                    sendMail.Info.Message.WriteLine(ConsoleColor.Red);
 
                     return false;
                 }
@@ -241,6 +253,7 @@ namespace InstaScrump.Business.Repository
                     InstaApi != null &&
                     InstaApi.IsUserAuthenticated)
                 {
+                    CheckRequestLimit();
                     return (await InstaApi.LogoutAsync()).Succeeded;
                 }
             }

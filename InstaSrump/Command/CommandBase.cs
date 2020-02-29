@@ -1,4 +1,5 @@
 ﻿using InstaScrump.Business;
+using InstaScrump.Common.Interfaces;
 using InstaScrump.Common.Utils;
 using InstaScrump.Database.Model;
 
@@ -14,7 +15,7 @@ namespace InstaScrump.Command
         }
 
         public static InstaScrumpUnitOfWork InstaScrumpUnitOfWork { get; private set; }
-        protected static Config Config { get; private set; }
+        protected static IConfig Config { get; private set; }
         protected DbContext DbContext { get; private set; }
     }
 }

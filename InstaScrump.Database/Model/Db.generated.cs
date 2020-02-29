@@ -51,7 +51,7 @@ namespace InstaScrump.Database.Model
 		public long Id { get; set; } // integer
 
 		[Column(       DataType=DataType.Text,     Length=int.MaxValue, Precision=0, Scale=0), NotNull]
-		public string Username { get; set; } // text(max)
+		public string UserName { get; set; } // text(max)
 
 		[Column(       DataType=DataType.Int64,    Length=8, Precision=19, Scale=0), NotNull]
 		public long InstaPk { get; set; } // integer
@@ -64,6 +64,9 @@ namespace InstaScrump.Database.Model
 
 		[Column(       DataType=DataType.DateTime, Length=8, Precision=0, Scale=0),    Nullable]
 		public DateTime? LastUpdate { get; set; } // datetime
+
+		[Column(       DataType=DataType.Int64,    Length=8, Precision=19, Scale=0),    Nullable]
+		public long? FailedUpdate { get; set; } // integer
 	}
 
 	[Table("LoginData")]

@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using InstaScrump.Common.Interfaces;
 using InstaScrump.Common.Constants;
+using System;
 
 namespace InstaScrump.Common.Utils
 {
@@ -118,6 +119,11 @@ namespace InstaScrump.Common.Utils
                 Write(ConfigKey.Test_Db_Key, @"DataSource=G:\Projekte\Database\Test\InstaScrump.db;", "Database");
             }
 
+        }
+
+        public T Read<T>(string key, string section = null)
+        {
+           return (T)Convert.ChangeType(Read(key, section), typeof(T));
         }
     }
 }

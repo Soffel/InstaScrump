@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InstaScrump.Command;
-using InstaScrump.Common.Extension;
+using Extension;
 using InstaScrump.Common.Interfaces;
 
 namespace InstaScrump
@@ -21,6 +21,7 @@ namespace InstaScrump
                new QuitCmd(),
                new LoginCmd(),
                new LogoutCmd(),
+               new LikeHashtagCmd(),
             };
         }
 
