@@ -33,7 +33,7 @@ namespace InstaScrump.Business.Rules
 
                 foreach(var v in combo.content)
                 {
-                    if (media.Caption.Text.Contains(v))
+                    if (media.Caption.Text.Contains(v, System.StringComparison.InvariantCultureIgnoreCase))
                         c++;
                 }
 

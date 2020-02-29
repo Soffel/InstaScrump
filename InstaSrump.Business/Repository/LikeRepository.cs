@@ -61,6 +61,7 @@ namespace InstaScrump.Business.Repository
                         }   
                         else if(!like.Succeeded)
                         {
+                            "".WriteLine();
                             like.Info.Message.WriteLine(ConsoleColor.Red);
                             return;
                         }
@@ -69,6 +70,7 @@ namespace InstaScrump.Business.Repository
                     Sleeper.Sleep();
                 }
             } while (maxId != null && likes < rules.Count);
+            "".WriteLine();
         }   
     }
 
