@@ -30,7 +30,6 @@ namespace InstaScrump.Business.Repository
 
             var maxId = "";
             var likes = 0;
-            var cursor = Console.CursorTop;
             do
             {
                 CheckRequestLimit();
@@ -44,7 +43,9 @@ namespace InstaScrump.Business.Repository
 
                 maxId = mediaList.Value.NextMaxId;
 
-                foreach(var media in mediaList.Value.Medias)
+                Sleeper.RandomSleep(200, 700);
+
+                foreach (var media in mediaList.Value.Medias)
                 {
                     if(!media.HasLiked && rules.DoLike(media))
                     {
@@ -67,7 +68,7 @@ namespace InstaScrump.Business.Repository
                         }
                     }
 
-                    Sleeper.Sleep();
+                    Sleeper.RandomSleep(200, 700);
                 }
             } while (maxId != null && likes < rules.Count);
             "".WriteLine();

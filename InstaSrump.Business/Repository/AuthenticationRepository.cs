@@ -137,7 +137,7 @@ namespace InstaScrump.Business.Repository
                     return true;
                 }
 
-                Sleeper.Sleep();
+                Sleeper.RandomSleep(400, 600);
             }
 
             "login unsuccessful".WriteLine(ConsoleColor.Red);
@@ -198,8 +198,8 @@ namespace InstaScrump.Business.Repository
                         challenge.Info.Message.WriteLine(ConsoleColor.Red);
                         return false;
                     }
-                 
-                    Sleeper.Sleep();
+
+                    Sleeper.RandomSleep(300, 500);
 
                     CheckRequestLimit();
                     var sendMail = await InstaApi.RequestVerifyCodeToEmailForChallengeRequireAsync();
