@@ -4,16 +4,16 @@ using InstaScrump.Business.Rules;
 
 namespace InstaScrump.Rules
 {
-    public class LPRule : ILikeRules
+    public class PhotoRule : ILikeRules
     {
-        public LPRule(int maxLikes)
+        public PhotoRule(int maxLikes)
         {
             Count = maxLikes;
         }
 
-        public string Name => "lp";
+        public string Name => "foto";
 
-        public string MainSearch => "landscapephotography";
+        public string MainSearch => "photograhy";
 
         public IRule[] DontLikeRules => new IRule[]
         {
@@ -23,15 +23,15 @@ namespace InstaScrump.Rules
             new VirusSpam(),
             new LocationSpam(),
             new CamSpam(),
-            new ContainsRule(new[]{"fashion","outfit", "@", "fitness", "gay", "selfie", "drawing", "india", "#itsme", "flower", "#love", "poetry", "#people"}),
+            new ContainsRule(new[]{"fashion","outfit", "@", "fitness", "gay", "selfie", "drawing", "gat", "handcraft", "my", "kill"}),
             new ContainsCombo(new[]{ 
-                new Combo(2, new[] { "night", "day" }), 
-                new Combo(3, new[] { "food", "film", "wildlife", "newborn", "bnw", "macro", "toy", "book" }), 
-                new Combo(2, new[] { "art", "landscape", "football", "ships" }), 
+                new Combo(3, new[] { "food", "landscape", "film", "wildlife", "newborn", "bnw", "macro", "toy", "book" }), 
+                new Combo(2, new[] { "cat", "dog", "bunny", "monkey" }) 
             }),
+            
         };
 
-        public  int  LikeChance => 40;
+        public  int  LikeChance => 45;
 
         public int Count { get; }
 
@@ -42,16 +42,13 @@ namespace InstaScrump.Rules
                 return false;
             }
 
-            if (!this.RandomLike())
-                return false;
-
-            foreach (var dontRule in DontLikeRules)
+            foreach(var dontRule in DontLikeRules)
             {
                 if (dontRule.MatchRule(media))
                     return false;
             }
 
-            return true;
+            return this.RandomLike();
         }
     }
 }

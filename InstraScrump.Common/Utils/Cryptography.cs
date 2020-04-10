@@ -69,7 +69,7 @@ namespace InstaScrump.Common.Utils
                         decryptedByteCount = reader.Read(decrypted, 0, decrypted.Length);
                     }
                 }
-                catch (Exception e )
+                catch (Exception)
                 {
                     return string.Empty;
                 }

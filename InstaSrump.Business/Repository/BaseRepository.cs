@@ -1,10 +1,6 @@
 ﻿using InstagramApiSharp.API;
 using InstaScrump.Common.Interfaces;
 using InstaScrump.Database.Model;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using InstaScrump.Common.Constants;
 using InstaScrump.Common.Utils;
 
 namespace InstaScrump.Business.Repository
@@ -26,7 +22,9 @@ namespace InstaScrump.Business.Repository
 
         protected static void CheckRequestLimit()
         {
-            if(RequestCounter != null)
+            Sleeper.RandomSleep(0, 300);
+
+            if (RequestCounter != null)
                 RequestCounter.CheckRequestLimit();
         }        
     }

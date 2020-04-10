@@ -13,7 +13,6 @@ namespace InstaScrump.Business.Rules
 
         int LikeChance { get; }
         int Count { get; }
-
     }
 
     public  interface IRule

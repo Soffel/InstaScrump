@@ -19,17 +19,19 @@ namespace InstaScrump.Rules
         {
             new LikesRule(40),
             new MediaTypeRule(new[]{InstaMediaType.Video, InstaMediaType.Carousel }),
-            new ContainsSpam(),
-            new ContainsRule(new[]{"fashion","outfit", "@", "fitness", "gay", "selfie", "drawing"}),
+            new LikeFollowSpam(),
+            new VirusSpam(),
+            new LocationSpam(),
+            new CamSpam(),
+            new ContainsRule(new[]{"fashion","outfit", "@", "fitness", "gay", "selfie", "drawing", "gat", "handcraft", "my","#itsme", "#love"}),
             new ContainsCombo(new[]{ 
-                new Combo(2, new[] { "nikon", "canon", "mobile", "sony" }), 
                 new Combo(3, new[] { "food", "landscape", "film", "wildlife", "newborn", "bnw", "macro", "toy", "book" }), 
-                new Combo(2, new[] { "cat", "dog" }), 
-                new Combo(2, new[] { "24mm", "35mm", "50mm", "75mm", "85mm", "120mm" }) 
+                new Combo(2, new[] { "cat", "dog", "bunny", "monkey" }) 
             }),
+            
         };
 
-        public  int  LikeChance => 86;
+        public  int  LikeChance => 45;
 
         public int Count { get; }
 

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Extension;
-using InstaScrump.Business.Rules;
-using InstaScrump.Common;
 using InstaScrump.Common.Interfaces;
 using InstaScrump.Rules;
 
@@ -29,6 +27,11 @@ namespace InstaScrump.Command
 
                     case "CAT":
                         await InstaScrumpUnitOfWork.LikeRepository.LikeHashTagbyRule(new CatRule(int.Parse(args[2])));
+                        break;
+
+                    case "FOTO":
+                    case "PHOTO":
+                        await InstaScrumpUnitOfWork.LikeRepository.LikeHashTagbyRule(new PhotoRule(int.Parse(args[2])));
                         break;
                 }
              
