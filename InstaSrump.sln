@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaScrump.Test", "InstaSr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaScrump.Common", "InstraScrump.Common\InstaScrump.Common.csproj", "{7EAD7376-0DE5-486E-9407-92F542B9FD8E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions", "..\Basic\BasicComponents\Extensions.csproj", "{394BD07B-3E20-4090-8479-D5EBACDCD091}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basic", "..\Basic\Basic\Basic.csproj", "{BACA84D0-0BA5-4089-B545-D11EA3571408}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{7EAD7376-0DE5-486E-9407-92F542B9FD8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EAD7376-0DE5-486E-9407-92F542B9FD8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EAD7376-0DE5-486E-9407-92F542B9FD8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{394BD07B-3E20-4090-8479-D5EBACDCD091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{394BD07B-3E20-4090-8479-D5EBACDCD091}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{394BD07B-3E20-4090-8479-D5EBACDCD091}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{394BD07B-3E20-4090-8479-D5EBACDCD091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BACA84D0-0BA5-4089-B545-D11EA3571408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BACA84D0-0BA5-4089-B545-D11EA3571408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BACA84D0-0BA5-4089-B545-D11EA3571408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BACA84D0-0BA5-4089-B545-D11EA3571408}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

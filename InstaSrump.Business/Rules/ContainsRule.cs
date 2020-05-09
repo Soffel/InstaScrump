@@ -1,5 +1,5 @@
 ﻿using InstagramApiSharp.Classes.Models;
-using Extension;
+using Extensions;
 
 namespace InstaScrump.Business.Rules
 {

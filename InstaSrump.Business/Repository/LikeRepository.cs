@@ -1,16 +1,11 @@
 ﻿using InstaScrump.Common.Interfaces;
 using InstaScrump.Database.Model;
-using InstaScrump.Common.Extension;
-using Extension;
+using Extensions;
 using System;
 using InstaScrump.Business.Rules;
-using System.Text;
 using System.Threading.Tasks;
 using InstagramApiSharp;
-using InstagramApiSharp.Classes;
-using InstaScrump.Common;
-using System.Linq;
-using InstaScrump.Common.Utils;
+using Utils;
 
 namespace InstaScrump.Business.Repository
 {
@@ -28,12 +23,16 @@ namespace InstaScrump.Business.Repository
                 return;
             }
 
+            IsLikeLimitEvent += LikeRepository_IsLikeLimitEvent;
+            SetLikeLimitEvent();
+
             var maxId = "";
             var likes = 0;
+            var usedRule = rules.MainSearch;
             do
             {
                 CheckRequestLimit();
-                var mediaList = await InstaApi.HashtagProcessor.GetRecentHashtagMediaListAsync(rules.MainSearch, PaginationParameters.MaxPagesToLoad((int)(DateTime.Now.Ticks % (5 - 1)) + 1).StartFromMaxId(maxId));
+                var mediaList = await InstaApi.HashtagProcessor.GetRecentHashtagMediaListAsync(usedRule, PaginationParameters.MaxPagesToLoad((int)(DateTime.Now.Ticks % (5 - 1)) + 1).StartFromMaxId(maxId));
 
                 if(!mediaList.Succeeded)
                 {
@@ -52,6 +51,7 @@ namespace InstaScrump.Business.Repository
                         Sleeper.RandomSleep(300, 900);
 
                         CheckRequestLimit();
+                        CheckLikeLimit();
                         var like = await InstaApi.MediaProcessor.LikeMediaAsync(media.InstaIdentifier);
 
                         if (like.Succeeded && like.Value)
@@ -82,7 +82,12 @@ namespace InstaScrump.Business.Repository
 
             } while (maxId != null && likes < rules.Count);
             "ready".WriteLine(ConsoleColor.Green);
-        }   
+        }
+
+        private void LikeRepository_IsLikeLimitEvent(object sender, EventArgs e)
+        {
+            return;
+        }
     }
 
 }

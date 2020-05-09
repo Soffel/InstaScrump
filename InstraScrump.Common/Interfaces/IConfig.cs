@@ -1,6 +1,4 @@
-﻿using InstaScrump.Common.Constants;
-
-namespace InstaScrump.Common.Interfaces
+﻿namespace InstaScrump.Common.Interfaces
 {
     public interface IConfig
     {

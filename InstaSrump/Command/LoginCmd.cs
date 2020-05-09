@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Extension;
+using Extensions;
 using InstaScrump.Common.Interfaces;
 
 namespace InstaScrump.Command

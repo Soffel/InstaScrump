@@ -1,29 +1,31 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Basic.Utils;
 using Extensions;
 using InstaScrump.Common.Interfaces;
 
 namespace InstaScrump.Command
 {
-    internal class EchoCmd : CommandBase, ICommand
+    internal class TimedEchoCmd : CommandBase, ICommand
     {
         public bool CommandString(string cmd)
         {
-            return cmd.Equals("echo", StringComparison.CurrentCultureIgnoreCase);
+            return cmd.Equals("timedecho", StringComparison.CurrentCultureIgnoreCase) || cmd.Equals("techo", StringComparison.CurrentCultureIgnoreCase);
         }
 
-#pragma warning disable 1998
+
         public async Task Execute(string[] args)
-#pragma warning restore 1998
         {
             args[0] = "";
             var result = string.Join(' ', args);
             result.WriteLine(ConsoleColor.DarkGreen);
+            new Timer(() => result.WriteLine(ConsoleColor.DarkGreen), 1, Utils.Sleeper.SleepType.h) { Restart = false };
         }
 
         public string HelpText()
         {
-            return "echo <text> \t\t => outputs the following text.";
+            return "timedecho <text> \t\t => outputs the following text.";
         }
+    
     }
 }

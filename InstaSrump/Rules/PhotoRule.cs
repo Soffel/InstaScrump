@@ -37,7 +37,7 @@ namespace InstaScrump.Rules
 
         public bool DoLike(InstaMedia media)
         {
-            if (media.Caption == null || !media.Caption.Text.Contains(MainSearch)) //gesuchter hashtag in Kommentaren
+            if (media.Caption == null) 
             {
                 return false;
             }

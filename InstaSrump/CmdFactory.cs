@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InstaScrump.Command;
-using Extension;
+using Extensions;
 using InstaScrump.Common.Interfaces;
 
 namespace InstaScrump
@@ -17,6 +17,7 @@ namespace InstaScrump
             Commands = new List<ICommand>
             {
                new EchoCmd(),
+               new TimedEchoCmd(),
                new ClearCmd(),
                new QuitCmd(),
                new LoginCmd(),

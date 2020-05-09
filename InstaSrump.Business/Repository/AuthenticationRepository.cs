@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net.Http;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using InstagramApiSharp.API.Builder;
 using InstagramApiSharp.Classes;
@@ -8,12 +7,11 @@ using InstaScrump.Common;
 using InstaScrump.Common.Exceptions;
 using InstaScrump.Common.Extension;
 using InstaScrump.Common.Interfaces;
-using InstaScrump.Common.Utils;
 using InstaScrump.Database.Model;
 using InstaScrump.Common.Constants;
-using Extension;
-
+using Extensions;
 using LinqToDB;
+using Utils;
 
 namespace InstaScrump.Business.Repository
 {

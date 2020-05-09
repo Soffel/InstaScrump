@@ -84,14 +84,19 @@ namespace InstaScrump.Common.Utils
                 Write(ConfigKey.Csv_Separator_Key, @";");
             }
 
+            if (!KeyExists(ConfigKey.Request_Limit_Per_Day_Key, "Config"))
+            {
+                Write(ConfigKey.Request_Limit_Per_Day_Key, @"50000", "Config");
+            }
+
             if (!KeyExists(ConfigKey.Request_Limit_Per_Hour_Key, "Config"))
             {
-                Write(ConfigKey.Request_Limit_Per_Hour_Key, @"2500", "Config");
+                Write(ConfigKey.Request_Limit_Per_Hour_Key, @"2200", "Config");
             }
 
             if (!KeyExists(ConfigKey.Request_Limit_Per_Minute_Key, "Config"))
             {
-                Write(ConfigKey.Request_Limit_Per_Minute_Key, @"50", "Config");
+                Write(ConfigKey.Request_Limit_Per_Minute_Key, @"40", "Config");
             }
 
             if (!KeyExists(ConfigKey.Max_Login_Key, "Config"))

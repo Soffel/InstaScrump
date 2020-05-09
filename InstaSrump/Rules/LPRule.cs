@@ -13,7 +13,12 @@ namespace InstaScrump.Rules
 
         public string Name => "lp";
 
-        public string MainSearch => "landscapephotography";
+        public string MainSearch {
+            get 
+            {
+                return "landscapephotography";
+            }
+        }
 
         public IRule[] DontLikeRules => new IRule[]
         {
@@ -37,7 +42,7 @@ namespace InstaScrump.Rules
 
         public bool DoLike(InstaMedia media)
         {
-            if (media.Caption == null || !media.Caption.Text.Contains(MainSearch)) //gesuchter hashtag in Kommentaren
+            if (media.Caption == null)
             {
                 return false;
             }

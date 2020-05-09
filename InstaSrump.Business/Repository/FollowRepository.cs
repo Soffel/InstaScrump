@@ -1,7 +1,7 @@
 ﻿using InstaScrump.Common.Interfaces;
 using InstaScrump.Database.Model;
 using System.Threading.Tasks;
-using Extension;
+using Extensions;
 using System;
 using LinqToDB;
 using InstaScrump.Common.Exceptions;

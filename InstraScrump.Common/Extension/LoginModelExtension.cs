@@ -1,4 +1,4 @@
-﻿using Extension;
+﻿using Extensions;
 
 namespace InstaScrump.Common.Extension
 {

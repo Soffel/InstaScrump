@@ -9,6 +9,7 @@
         public const string Separator_Key = "Separator";
         public const string Csv_Separator_Key = "CsvSeparator";
         public const string Request_Limit_Per_Hour_Key = "RequestLimitPerHour";
+        public const string Request_Limit_Per_Day_Key = "RequestLimitPerDay";
         public const string Request_Limit_Per_Minute_Key = "RequestLimitPerMinute";
         public const string Max_Login_Key = "MaxLoginAttempt";
         public const string Vector_Key = "Vector";
