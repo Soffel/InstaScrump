@@ -19,7 +19,7 @@ namespace InstaScrump.Command
             args[0] = "";
             var result = string.Join(' ', args);
             result.WriteLine(ConsoleColor.DarkGreen);
-            new Timer(() => result.WriteLine(ConsoleColor.DarkGreen), 1, Utils.Sleeper.SleepType.h) { Restart = false };
+            new Timer(true).SetTimer(() => result.WriteLine(ConsoleColor.DarkGreen), 1, Utils.Sleeper.SleepType.h);
         }
 
         public string HelpText()
